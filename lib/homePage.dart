@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:merakis_assessment_app/likedItemsPage.dart';
+import 'randomNouns.dart';
 
 class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(CupertinoIcons.heart),
+                Icon(Icons.favorite),
                 Text("Liked Items"),
               ],
             ),
@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
+      body: RandomNouns(),
     );
   }
 }

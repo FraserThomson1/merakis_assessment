@@ -8,6 +8,7 @@ class LikedItemsPage extends StatefulWidget {
 
 class _LikedItemsPageState extends State<LikedItemsPage> {
   List _likedItems = <String>[];
+  bool _showItems = false;
 
   void initState() {
     super.initState();
@@ -33,7 +34,7 @@ class _LikedItemsPageState extends State<LikedItemsPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Liked Items"),
+        title: Text("Fun Page"),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back),
           onTap: () {
@@ -44,22 +45,32 @@ class _LikedItemsPageState extends State<LikedItemsPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-              color: Colors.grey[300],
-              child: Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Center(
-                    child: Text(
-                      "Number of liked items: " + _likedItems.length.toString(),
-                      style: TextStyle(fontSize: 20.0),
-                    ),
-                  ))),
-          Divider(),
-          Expanded(
-            child: ListView(
-              children: _buildList(),
-            ),
-          )
+          GestureDetector(
+              onTap: () {
+                setState(() {
+                  _showItems = !_showItems;
+                });
+              },
+              child: Container(
+                  color: Colors.grey[300],
+                  child: Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Row(children: [
+                        _showItems
+                            ? Icon(Icons.arrow_drop_down)
+                            : Icon(Icons.arrow_drop_up),
+                        Text(
+                          "Liked items : " + _likedItems.length.toString(),
+                          style: TextStyle(fontSize: 20.0),
+                        ),
+                      ])))),
+          _showItems
+              ? Expanded(
+                  child: ListView(
+                    children: _buildList(),
+                  ),
+                )
+              : Container()
         ],
       ),
     );

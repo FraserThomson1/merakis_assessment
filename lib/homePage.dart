@@ -14,23 +14,25 @@ class _HomePageState extends State<HomePage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("Home"),
-        actions: [
-          GestureDetector(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.favorite),
-                Text("Liked Items"),
-              ],
-            ),
-            onTap: navigateToLikedItems,
-          )
-        ],
-      ),
-      body: RandomNouns(),
-    );
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text("Home"),
+          leading: Tooltip(
+              message: "Select wordpairs to add to your favorites list",
+              child: Icon(Icons.info)),
+          actions: [
+            GestureDetector(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.favorite),
+                  Text("Liked Items"),
+                ],
+              ),
+              onTap: navigateToLikedItems,
+            )
+          ],
+        ),
+        body: RandomNouns());
   }
 }

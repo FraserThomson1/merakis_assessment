@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:merakis_assessment_app/likedItemsPage.dart';
 import 'package:merakis_assessment_app/homePage.dart';
+import 'package:merakis_assessment_app/searchPage.dart';
 
 class NavigationPage extends StatefulWidget {
   _NavigationPageState createState() => _NavigationPageState();
@@ -11,7 +11,7 @@ class _NavigationPageState extends State<NavigationPage> {
   int _currentindex = 0;
   List _pages = [
     HomePage(),
-    LikedItemsPage(),
+    SearchPage(),
   ];
 
   void updateView(int index) {
@@ -30,7 +30,7 @@ class _NavigationPageState extends State<NavigationPage> {
           BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.home), label: "Home"),
           BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.heart), label: "Liked Items")
+              icon: Icon(CupertinoIcons.search), label: "Search")
         ],
       ),
     );

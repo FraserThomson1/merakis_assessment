@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'package:merakis_assessment_app/likedItemsStorage.dart';
 
-class RandomNouns extends StatefulWidget {
-  final likedItemsStorage storage = likedItemsStorage();
-  _RandomNounsState createState() => _RandomNounsState();
+class RandomWords extends StatefulWidget {
+  final LikedItemsStorage storage = LikedItemsStorage();
+  _RandomWordsState createState() => _RandomWordsState();
 }
 
-class _RandomNounsState extends State<RandomNouns> {
+class _RandomWordsState extends State<RandomWords> {
   List _items = <String>[];
   List _likedItems = <String>[];
 

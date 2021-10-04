@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:merakis_assessment_app/likedItemsPage.dart';
-import 'randomNouns.dart';
+import 'randomWords.dart';
 
 class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
@@ -33,6 +33,6 @@ class _HomePageState extends State<HomePage> {
             )
           ],
         ),
-        body: RandomNouns());
+        body: RandomWords());
   }
 }

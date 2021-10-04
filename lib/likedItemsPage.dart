@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:merakis_assessment_app/likedItemsStorage.dart';
 
 class LikedItemsPage extends StatefulWidget {
-  final storage = likedItemsStorage();
   _LikedItemsPageState createState() => _LikedItemsPageState();
 }
 
 class _LikedItemsPageState extends State<LikedItemsPage> {
+  final _storage = LikedItemsStorage();
   List _likedItems = <String>[];
   bool _showItems = false;
 
   void initState() {
     super.initState();
-    widget.storage.readItems().then((List wps) {
+    _storage.readItems().then((List wps) {
       setState(() {
         _likedItems = wps;
       });

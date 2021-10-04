@@ -29,10 +29,12 @@ class _HomePageState extends State<HomePage> {
                   Text("Liked Items"),
                 ],
               ),
-              onTap: navigateToLikedItems,
+              onTap:
+                  navigateToLikedItems, // Navigate to liked items page when clicked
             )
           ],
         ),
+        // Display infinite of wordpairs
         body: RandomWords());
   }
 }

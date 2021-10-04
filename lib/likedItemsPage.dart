@@ -6,26 +6,27 @@ class LikedItemsPage extends StatefulWidget {
 }
 
 class _LikedItemsPageState extends State<LikedItemsPage> {
-  final _storage = LikedItemsStorage();
-  List _likedItems = <String>[];
-  bool _showItems = false;
+  final _storage = LikedItemsStorage(); // Used to access liked items
+  List _likedItems = <String>[]; // Stored list of liked items
+  bool _showItems = false; // Records whether items are being displayed or not
 
   void initState() {
     super.initState();
     _storage.readItems().then((List wps) {
       setState(() {
-        _likedItems = wps;
+        _likedItems = wps; // Read list of liked items from storage
       });
     });
   }
 
   List<Widget> _buildList() {
+    // Construct list of widgets using list of liked items
     List<Widget> widgets = <Widget>[];
     for (int i = 0; i < _likedItems.length; i++) {
       widgets.add(ListTile(
         title: Text(_likedItems[i]),
       ));
-      widgets.add(Divider());
+      widgets.add(Divider()); // Add Divider after each item
     }
     return widgets;
   }
@@ -38,17 +39,16 @@ class _LikedItemsPageState extends State<LikedItemsPage> {
         leading: GestureDetector(
           child: Icon(Icons.arrow_back),
           onTap: () {
-            Navigator.pop(context);
+            Navigator.pop(context); // Navigate back to home when arrow pressed
           },
         ),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           GestureDetector(
               onTap: () {
                 setState(() {
-                  _showItems = !_showItems;
+                  _showItems = !_showItems; // Toggle display of items
                 });
               },
               child: Container(
@@ -58,7 +58,8 @@ class _LikedItemsPageState extends State<LikedItemsPage> {
                       child: Row(children: [
                         _showItems
                             ? Icon(Icons.arrow_drop_down)
-                            : Icon(Icons.arrow_drop_up),
+                            : Icon(Icons
+                                .arrow_drop_up), // Change arrow based on state of _showItems
                         Text(
                           "Liked items : " + _likedItems.length.toString(),
                           style: TextStyle(fontSize: 20.0),
@@ -67,7 +68,7 @@ class _LikedItemsPageState extends State<LikedItemsPage> {
           _showItems
               ? Expanded(
                   child: ListView(
-                    children: _buildList(),
+                    children: _buildList(), // Display list if _showItems true
                   ),
                 )
               : Container()

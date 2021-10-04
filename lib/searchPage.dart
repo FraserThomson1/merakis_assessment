@@ -8,7 +8,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   final _storage = LikedItemsStorage();
   final _textController = TextEditingController();
-  List _displayedItems = <String>[];
+  List _displayedItems = <String>[]; // Search results
   List _likedItems = <String>[];
 
   @override
@@ -21,7 +21,7 @@ class _SearchPageState extends State<SearchPage> {
     super.initState();
     _storage.readItems().then((List wps) {
       setState(() {
-        _likedItems = wps;
+        _likedItems = wps; // Read list of liked items from storage
       });
     });
   }
@@ -30,15 +30,18 @@ class _SearchPageState extends State<SearchPage> {
     List<String> results = [];
     for (final i in _likedItems) {
       if (i.contains(RegExp(item, caseSensitive: false))) {
-        results.add(i);
+        results.add(i); // Store liked item if contains search item
       }
     }
-    return item == "" ? [] : results;
+    return item == ""
+        ? []
+        : results; // If search item is empty return empty list
   }
 
   List<Widget> _buildList() {
     List<Widget> widgets = <Widget>[];
     for (int i = 0; i < _displayedItems.length; i++) {
+      // For each item add List Tile and Divider below it
       widgets.add(ListTile(
         title: Text(_displayedItems[i]),
       ));
@@ -55,7 +58,9 @@ class _SearchPageState extends State<SearchPage> {
           Container(
               color: Colors.white,
               child: Row(
+                // Contains Search button and text field
                 children: [
+                  //Search button
                   Padding(
                       padding: EdgeInsets.only(left: 5.0, top: 5.0),
                       child: Container(
@@ -63,6 +68,7 @@ class _SearchPageState extends State<SearchPage> {
                           child: ElevatedButton(
                             onPressed: () {
                               setState(() {
+                                // Update search result and view
                                 _displayedItems =
                                     _searchItem(_textController.text);
                               });
@@ -71,6 +77,7 @@ class _SearchPageState extends State<SearchPage> {
                             style:
                                 ElevatedButton.styleFrom(primary: Colors.blue),
                           ))),
+                  //Text field
                   Expanded(
                       child: Padding(
                           padding: EdgeInsets.only(right: 5.0, top: 5.0),
@@ -85,6 +92,7 @@ class _SearchPageState extends State<SearchPage> {
                               ))))
                 ],
               )),
+          // Display Search results in listview
           Expanded(
               child: Padding(
                   padding: EdgeInsets.only(top: 10),
